@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "JqU75n3nL+0=",
+  "dgSpecHash": "XHPaD9a41cY=",
   "success": true,
   "projectFilePath": "D:\\dev\\ReadMeForge\\ClientGUI\\ClientGUI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\OmegaCrimson\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.11\\microsoft.net.illink.tasks.9.0.11.nupkg.sha512",
+    "C:\\Users\\OmegaCrimson\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\9.0.11\\microsoft.netcore.app.runtime.win-x64.9.0.11.nupkg.sha512",
+    "C:\\Users\\OmegaCrimson\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\9.0.11\\microsoft.windowsdesktop.app.runtime.win-x64.9.0.11.nupkg.sha512",
+    "C:\\Users\\OmegaCrimson\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\9.0.11\\microsoft.aspnetcore.app.runtime.win-x64.9.0.11.nupkg.sha512"
+  ],
   "logs": []
 }

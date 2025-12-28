@@ -10,7 +10,7 @@ class Program
         try
         {
             using var client = new HttpClient();
-            var response = await client.GetAsync("http://localhost:5050/great");
+            var response = await client.GetAsync("http://localhost:5050/greet");
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();

@@ -1,0 +1,16 @@
+D:\dev\ReadMeForge\ClientGUI\bin\Debug\net9.0-windows\ClientGUI.exe
+D:\dev\ReadMeForge\ClientGUI\bin\Debug\net9.0-windows\ClientGUI.deps.json
+D:\dev\ReadMeForge\ClientGUI\bin\Debug\net9.0-windows\ClientGUI.runtimeconfig.json
+D:\dev\ReadMeForge\ClientGUI\bin\Debug\net9.0-windows\ClientGUI.dll
+D:\dev\ReadMeForge\ClientGUI\bin\Debug\net9.0-windows\ClientGUI.pdb
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.Form1.resources
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.csproj.GenerateResource.cache
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.AssemblyInfoInputs.cache
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.AssemblyInfo.cs
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.csproj.CoreCompileInputs.cache
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.dll
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\refint\ClientGUI.dll
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.pdb
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ClientGUI.genruntimeconfig.cache
+D:\dev\ReadMeForge\ClientGUI\obj\Debug\net9.0-windows\ref\ClientGUI.dll
