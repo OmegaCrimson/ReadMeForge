@@ -1,0 +1,14 @@
+D:\dev\ReadMeForge\ClientCLI\bin\Debug\net9.0\ClientCLI.exe
+D:\dev\ReadMeForge\ClientCLI\bin\Debug\net9.0\ClientCLI.deps.json
+D:\dev\ReadMeForge\ClientCLI\bin\Debug\net9.0\ClientCLI.runtimeconfig.json
+D:\dev\ReadMeForge\ClientCLI\bin\Debug\net9.0\ClientCLI.dll
+D:\dev\ReadMeForge\ClientCLI\bin\Debug\net9.0\ClientCLI.pdb
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.AssemblyInfoInputs.cache
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.AssemblyInfo.cs
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.csproj.CoreCompileInputs.cache
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.dll
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\refint\ClientCLI.dll
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.pdb
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ClientCLI.genruntimeconfig.cache
+D:\dev\ReadMeForge\ClientCLI\obj\Debug\net9.0\ref\ClientCLI.dll
