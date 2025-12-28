@@ -5,7 +5,7 @@ A modular, multilingual README generator with badge creation, section templates,
 مولّد README متعدد اللغات، يدعم إنشاء الشارات، وتنسيق الأقسام، ويعمل عبر واجهات CLI وGUI وخادم Python.
 
 ---
-
+ 
 ## 📦 Project Overview
 
 [![Build](https://github.com/OmegaCrimson/ReadMeForge/actions/workflows/tester.yml/badge.svg)](https://github.com/OmegaCrimson/ReadMeForge/actions/workflows/tester.yml)
