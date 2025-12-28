@@ -56,4 +56,4 @@ jobs:
       - name: Build with PyInstaller
         run: |
           pip install pyinstaller
-          pyinstaller --onefile --noconsole --strip PythonServer/main.py
+          pyinstaller --onefile --noconsole --strip PythonServer/PythonServer.py
