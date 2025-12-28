@@ -51,7 +51,7 @@ jobs:
           pip install -r PythonServer/requirements.txt
 
       - name: Test Python syntax
-        run: python -m py_compile PythonServer/main.py
+        run: python -m py_compile PythonServer/PythonServer.py
 
       - name: Build with PyInstaller
         run: |
