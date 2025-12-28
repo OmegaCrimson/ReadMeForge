@@ -1,0 +1,58 @@
+name: Build and Test All Projects
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-dotnet:
+    name: Build C# Projects
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: |
+          dotnet restore ClientCLI/ClientCLI.csproj
+          dotnet restore ClientGUI/ClientGUI.csproj
+
+      - name: Build CLI
+        run: dotnet build ClientCLI/ClientCLI.csproj --configuration Release /p:DebugType=none
+
+      - name: Build GUI
+        run: dotnet build ClientGUI/ClientGUI.csproj --configuration Release /p:DebugType=none
+
+  build-python:
+    name: Build Python Server
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r PythonServer/requirements.txt
+
+      - name: Test Python syntax
+        run: python -m py_compile PythonServer/main.py
+
+      - name: Build with PyInstaller
+        run: |
+          pip install pyinstaller
+          pyinstaller --onefile --noconsole --strip PythonServer/main.py
