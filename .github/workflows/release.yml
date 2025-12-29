@@ -1,0 +1,127 @@
+name: Manual Versioned Release Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run without pushing or releasing'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        npm install
+
+    - name: Run semantic-release (create tag + changelog)
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "Running semantic-release..."
+        npx semantic-release || echo "semantic-release failed or no release needed."
+
+    - name: "Fallback: Create tag if none exists"
+      run: |
+        git fetch --tags
+        $TAG = git describe --tags --abbrev=0
+        if (-not $TAG) {
+          $DATE = Get-Date -Format "yyyy.MM.dd.HHmm"
+          $TAG = "v$DATE"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag $TAG
+          git push origin $TAG
+          Write-Host "Created fallback tag: $TAG"
+        } else {
+          Write-Host "Tag already exists: $TAG"
+        }
+
+    - name: Clean previous outputs
+      run: |
+        Remove-Item -Recurse -Force dist, build, *.spec, ReadMeForge.zip -ErrorAction SilentlyContinue
+
+    - name: Build ClientCLI
+      run: dotnet publish ClientCLI/ClientCLI.csproj -c Release -o out/ClientCLI
+
+    - name: Build ClientGUI
+      run: dotnet publish ClientGUI/ClientGUI.csproj -c Release -o out/ClientGUI
+
+    - name: Build PythonServer
+      run: pyinstaller --onefile PythonServer/PythonServer.py --distpath out/PythonServer
+
+    - name: Verify all outputs
+      run: |
+        if (!(Test-Path "out/ClientCLI") -or !(Test-Path "out/ClientGUI") -or !(Test-Path "out/PythonServer")) {
+          Write-Host "One or more builds failed."
+          exit 1
+        }
+
+    - name: Zip all builds
+      run: |
+        Compress-Archive -Path out\* -DestinationPath ReadMeForge.zip
+        Write-Host "Zipped build: ReadMeForge.zip"
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ReadMeForge-Windows
+        path: ReadMeForge.zip
+
+    - name: Install GitHub CLI
+      run: |
+        Invoke-WebRequest -Uri https://github.com/cli/cli/releases/download/v2.45.0/gh_2.45.0_windows_amd64.msi -OutFile gh.msi
+        Start-Process msiexec.exe -Wait -ArgumentList '/i gh.msi /quiet'
+        Remove-Item gh.msi
+
+    - name: Create GitHub Release
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      run: |
+        git fetch --tags
+        $TAG = git describe --tags --abbrev=0
+        if (-not $TAG) {
+          Write-Host "No tag found. Cannot create release."
+          exit 1
+        }
+
+        $NOTES_FILE = "CHANGELOG.md"
+        if (-not (Test-Path $NOTES_FILE)) {
+          Write-Host "CHANGELOG.md not found. Creating placeholder."
+          "Initial release." | Out-File $NOTES_FILE
+        }
+
+        Write-Host "Creating release for tag: $TAG"
+        gh release create $TAG ReadMeForge.zip `
+          --repo "$env:GITHUB_REPOSITORY" `
+          --title "ReadMeForge $TAG" `
+          --notes-file $NOTES_FILE `
+          --target main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
